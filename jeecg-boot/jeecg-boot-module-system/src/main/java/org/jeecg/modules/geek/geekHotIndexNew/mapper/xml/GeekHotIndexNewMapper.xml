@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.geek.geekHotIndexNew.mapper.GeekHotIndexNewMapper">
+    <!--删除当时时间，最近三天的数据-->
+    <delete id="delete3Date" parameterType="java.lang.String">
+        delete  FROM geek_hot_index_new where
+        date &gt; date_add(DATE_FORMAT( #{strYYMMDD}, '%Y-%m-%d'), interval -3 day)
+        and
+        date &lt; date_add(DATE_FORMAT( #{strYYMMDD}, '%Y-%m-%d'), interval 1 day)
+    </delete>
+    <!--    保持最近七天的数据-->
+    <delete id="keepSevenDaysData">
+        delete  FROM geek_hot_index_new where date &lt;date_add(DATE_FORMAT( CURRENT_DATE(), '%Y-%m-%d'),
+        interval -7 day)
+    </delete>
+
+    <update id="dropGeekView">
+        drop table view_geek_hot_index_new;
+    </update>
+    <update id="createTableViewGeek">
+         create table view_geek_hot_index_new as
+         SELECT
+        a.classification,a.product_id,c.NAME,c.name_tko,c.level,c.parent_category_id,a.avg_rank,b.rank, b.rank - a.avg_rank AS
+        change_rank,b.title,b.create_time,b.create_by,b.update_by,b.update_time from
+        (SELECT product_id,classification,name,name_tko,avg(rank) as avg_rank FROM geek_hot_index_new GROUP BY product_id) a
+        LEFT JOIN (select * from geek_hot_index_new where date=date_add(DATE_FORMAT( CURRENT_DATE(), '%Y-%m-%d'),
+                interval -1 day)) b on a.product_id=b.product_id
+				LEFT JOIN geek_category c on c.category_id=a.classification
+    </update>
+</mapper>

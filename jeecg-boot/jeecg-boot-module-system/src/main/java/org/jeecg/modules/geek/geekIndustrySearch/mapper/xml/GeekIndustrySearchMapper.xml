@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.geek.geekIndustrySearch.mapper.GeekIndustrySearchMapper">
+    <delete id="deleteTable"  >
+		delete		FROM  geek_industry_search
+	</delete>
+
+	<delete id="deleteOtherInfo">
+		delete FROM geek_industry_search where path1 like '%食物%' or path1 like '%医疗%' or path1 like '%保健%';
+	</delete>
+</mapper>
