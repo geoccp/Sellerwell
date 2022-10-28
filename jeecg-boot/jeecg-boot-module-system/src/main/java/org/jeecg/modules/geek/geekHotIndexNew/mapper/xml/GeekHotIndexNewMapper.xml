@@ -18,13 +18,14 @@
         drop table view_geek_hot_index_new;
     </update>
     <update id="createTableViewGeek">
-         create table view_geek_hot_index_new as
+        create table view_geek_hot_index_new as
          SELECT
         a.classification,a.product_id,c.NAME,c.name_tko,c.level,c.parent_category_id,a.avg_rank,b.rank, b.rank - a.avg_rank AS
         change_rank,b.title,b.create_time,b.create_by,b.update_by,b.update_time from
-        (SELECT product_id,classification,name,name_tko,avg(rank) as avg_rank FROM geek_hot_index_new GROUP BY product_id) a
+        (SELECT product_id,classification,name,name_tko,avg(`rank`) as avg_rank FROM geek_hot_index_new GROUP BY product_id,classification,name,name_tko) a
         LEFT JOIN (select * from geek_hot_index_new where date=date_add(DATE_FORMAT( CURRENT_DATE(), '%Y-%m-%d'),
                 interval -1 day)) b on a.product_id=b.product_id
 				LEFT JOIN geek_category c on c.category_id=a.classification
+
     </update>
 </mapper>

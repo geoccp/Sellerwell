@@ -131,12 +131,12 @@ spring:
         connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
       datasource:
         master:
-#          url: jdbc:mysql://127.0.0.1:3306/jeecg-boot?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&&allowMultiQueries=true&rewriteBatchedStatements=true
-#          username: root
-#          password: root
-          url: jdbc:mysql://103.39.222.28:3306/jeecg-boot?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&&allowMultiQueries=true&rewriteBatchedStatements=true
-          username: jeecg-boot
-          password: YMA!bC#eH,3RW.Dhww
+          url: jdbc:mysql://127.0.0.1:3306/sellerwell?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&&allowMultiQueries=true&rewriteBatchedStatements=true
+          username: root
+          password: root
+#          url: jdbc:mysql://103.39.222.28:3306/jeecg-boot?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&&allowMultiQueries=true&rewriteBatchedStatements=true
+#          username: jeecg-boot
+#          password: YMA!bC#eH,3RW.Dhww
           driver-class-name: com.mysql.cj.jdbc.Driver
           # 多数据源配置
           #multi-datasource1:
